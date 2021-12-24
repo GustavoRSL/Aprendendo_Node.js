@@ -1,0 +1,27 @@
+/* h1 {
+  color: blue;
+} */
+
+body {
+  background-color: #0d6dfd4a;
+}
+
+#formulario-perguntas {
+  margin-top: 5vh;
+}
+
+div > h3 {
+  margin-top: 10px;
+}
+
+form {
+  margin-top: 0px;
+}
+
+form > input {
+  margin-bottom: 10px;
+}
+
+form > button {
+  margin-top: 10px;
+}
