@@ -6,6 +6,10 @@ body {
   background-color: #0d6dfd4a;
 }
 
+.card {
+  margin-top: 20px;
+}
+
 #formulario-perguntas {
   margin-top: 5vh;
 }
