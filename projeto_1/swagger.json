@@ -7,7 +7,7 @@
   "version": "1.0.0",
   "servers": [
     {
-      "url": "http://localhost:8080/v1",
+      "url": "http://localhost:8080/",
       "description": "API Teste"
     },
     {
@@ -22,32 +22,47 @@
         "description": "Essa rota é resposável por carregar a página inicial.",
         "tags": [
           "Home"
-        ]
-      },
-      "responses": {
-        "200": {
-          "description": "Página retornada com sucesso!"
-        },
-        "404": {
-          "description": "Página não encontrada!"
+        ],
+        "responses": {
+          "200": {
+            "description": "Página retornada com sucesso!"
+          },
+          "404": {
+            "description": "Página não encontrada!"
+          }
         }
       }
     },
-    "/enviar":{
+    "/enviar": {
       "post": {
         "summary": "Página para realizar perguntas.",
         "description": "Página para realizar perguntas ao fórum.",
-        "tags": ["Perguntar"],
+        "tags": [
+          "Perguntar"
+        ],
         "requestBody": {
-          "content":{
-            "application/json":{
-              "schema":{
+          "content": {
+            "application/json": {
+              "schema": {
                 "$ref": "#/components/schemas/Pergunta"
               }
             }
           }
         },
-        "parameters":[
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Pergunta"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
           {
             "name": "title",
             "in": "body",
@@ -61,48 +76,32 @@
             "required": true
           }
         ]
-      },
-      "responses": {
-        "200": {
-          "description": "OK",
-          "content": {
-            "application/json": {
-              "schema": {
-                "type":"object",
-                "$ref":"#/components/schemas/Pergunta"
-              }
-            }
-          }
-        }
       }
     },
-    "/pergunta/{id}":{
+
+    "/pergunta/{id}": {
       "get": {
         "summary": "Página para visualizar respostas da pergunta.",
         "description": "Página responsável por visualizar respostas de uma pergunta específica por meio de seu ID.",
-        "tags": ["Perguntar"],
+        "tags": [
+          "Perguntar"
+        ],
         "parameters": [
           {
-            "name": "ID",
+            "name": "id",
             "in": "path",
             "description": "ID da pergunta responsável por realizar a busca no banco de perguntas.",
             "required": true
           }
         ]
-
       }
     }
-
-
   },
   "components": {
     "schemas": {
-      "Pergunta":{
+      "Pergunta": {
         "type": "object",
         "properties": {
-          "id":{
-            "type": "integer"
-          },
           "title": {
             "type": "string"
           },
