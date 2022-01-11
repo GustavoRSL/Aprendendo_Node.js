@@ -5,6 +5,10 @@ const connection = require('./database/db')
 const perguntaModel = require('./database/pergunta')
 const pergunta = require('./database/pergunta')
 const Resposta = require('./database/Resposta')
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Banco de dados
 connection

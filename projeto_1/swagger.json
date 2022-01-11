@@ -1,0 +1,116 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Forum de perguntas e respostas.",
+    "description": "API de teste para utilizar Swagger."
+  },
+  "version": "1.0.0",
+  "servers": [
+    {
+      "url": "http://localhost:8080/v1",
+      "description": "API Teste"
+    },
+    {
+      "url": "http://localhost:8080/v2",
+      "description": "API producão."
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Página inicial.",
+        "description": "Essa rota é resposável por carregar a página inicial.",
+        "tags": [
+          "Home"
+        ]
+      },
+      "responses": {
+        "200": {
+          "description": "Página retornada com sucesso!"
+        },
+        "404": {
+          "description": "Página não encontrada!"
+        }
+      }
+    },
+    "/enviar":{
+      "post": {
+        "summary": "Página para realizar perguntas.",
+        "description": "Página para realizar perguntas ao fórum.",
+        "tags": ["Perguntar"],
+        "requestBody": {
+          "content":{
+            "application/json":{
+              "schema":{
+                "$ref": "#/components/schemas/Pergunta"
+              }
+            }
+          }
+        },
+        "parameters":[
+          {
+            "name": "title",
+            "in": "body",
+            "description": "Titulo atribuido a pergunta.",
+            "required": true
+          },
+          {
+            "name": "description",
+            "in": "body",
+            "description": "Descrição da pergunta.",
+            "required": true
+          }
+        ]
+      },
+      "responses": {
+        "200": {
+          "description": "OK",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type":"object",
+                "$ref":"#/components/schemas/Pergunta"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pergunta/{id}":{
+      "get": {
+        "summary": "Página para visualizar respostas da pergunta.",
+        "description": "Página responsável por visualizar respostas de uma pergunta específica por meio de seu ID.",
+        "tags": ["Perguntar"],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "description": "ID da pergunta responsável por realizar a busca no banco de perguntas.",
+            "required": true
+          }
+        ]
+
+      }
+    }
+
+
+  },
+  "components": {
+    "schemas": {
+      "Pergunta":{
+        "type": "object",
+        "properties": {
+          "id":{
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
